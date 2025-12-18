@@ -1,45 +1,53 @@
 function Form(props){
     return(
-        <form>
-            <label
-                htmlFor="cep"
-            >
-                CEP:
-            </label>
+        <form onClick={() => {props.isWrong(props.cep)}}>
+{/*----------CEP----------- */}
             <input
-                name="cep"
-                id="cep"
                 type="text"
-                onChange={() => {props.catchCep}}
+                placeholder="CEP"
+                onChange={(event) => {props.catchCep(event)}}
+                onClick={() => {props.toFalse()}}
+                id={(props.erro) ? "inputError" : ""}
             >
             </input>
-            <p>{(props.erro) ? "CPF inválido" : null}</p>
-
-            <label
-                htmlFor="rua"
-            >
-                Rua: 
-            </label>
+            <p id="error">{(props.erro) ? "CEP inválido" : ""}</p>
+{/*------------RUA-------------- */}
             <input
-                value={props.infos.rua || "rua"}
-                name="rua"
-                id="rua"
+                value={props.infos.logradouro || ""}
+                placeholder="Rua"
                 type="text"
             >
             </input>
 
-            <label
-                htmlFor="bairro"
-            >
-                Bairro: 
-            </label>
+{/*------------NÚMERO----------- */} 
             <input
-                value={props.infos.bairro || "bairro"}
-                name="bairro"
-                id="bairro"
+                placeholder="Número"
                 type="text"
             >
             </input>
+{/*------------BAIRRO-------------- */}
+            <input
+                value={props.infos.bairro || ""}
+                placeholder="Bairro"
+                type="text"
+            >
+            </input>
+{/*------------ESTADO---------- */}
+            <input
+                value={props.infos.estado || ""}
+                placeholder="Estado"
+                type="text"
+            >
+            </input>
+{/*----------CIDADE---------- */}
+            <input
+                value={props.infos.localidade || ""}
+                placeholder="Cidade"
+                type="text"
+            >
+            </input>
+
+            {/* <button onClick={() => {props.isWrong(props.cep)}}></button> */}
         </form>
     )
 }
